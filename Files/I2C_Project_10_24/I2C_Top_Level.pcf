@@ -1,0 +1,27 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Wed Oct 24 15:12:35 2018
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "rst" LOCATE = SITE "M18" LEVEL 1;
+COMP "SCL" LOCATE = SITE "C17" LEVEL 1;
+COMP "SDA" LOCATE = SITE "D18" LEVEL 1;
+COMP "sw_data_i<5>" LOCATE = SITE "T18" LEVEL 1;
+COMP "sw_data_i<6>" LOCATE = SITE "U18" LEVEL 1;
+COMP "sw_data_i<7>" LOCATE = SITE "R13" LEVEL 1;
+COMP "sw_data_i<0>" LOCATE = SITE "J15" LEVEL 1;
+COMP "sw_data_i<1>" LOCATE = SITE "L16" LEVEL 1;
+COMP "sw_data_i<2>" LOCATE = SITE "M13" LEVEL 1;
+COMP "sw_data_i<3>" LOCATE = SITE "R15" LEVEL 1;
+COMP "sw_data_i<4>" LOCATE = SITE "R17" LEVEL 1;
+COMP "clk" LOCATE = SITE "E3" LEVEL 1;
+COMP "bt_fire_i" LOCATE = SITE "P18" LEVEL 1;
+COMP "sw_addr_i<5>" LOCATE = SITE "U11" LEVEL 1;
+COMP "sw_addr_i<6>" LOCATE = SITE "V10" LEVEL 1;
+COMP "sw_addr_i<0>" LOCATE = SITE "U8" LEVEL 1;
+COMP "sw_addr_i<3>" LOCATE = SITE "H6" LEVEL 1;
+COMP "sw_addr_i<4>" LOCATE = SITE "U12" LEVEL 1;
+COMP "sw_addr_i<1>" LOCATE = SITE "R16" LEVEL 1;
+COMP "sw_addr_i<2>" LOCATE = SITE "T13" LEVEL 1;
+SCHEMATIC END;
+

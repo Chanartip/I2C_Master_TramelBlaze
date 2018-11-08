@@ -1,0 +1,10 @@
+https://courses.engr.illinois.edu/ece437/fa2018/ref/I2C_Serial_Protocol_Tutorial.pdf
+
+https://www.researchgate.net/publication/275771333_Design_of_I2C_Single_Master_Using_Verilog
+
+https://github.com/alexforencich/verilog-i2c/blob/master/rtl/i2c_master.v
+
+https://robot-electronics.co.uk/i2c-tutorial
+
+
+

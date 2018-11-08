@@ -1,0 +1,6 @@
+xst -intstyle ise -ifn "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/I2C_Project_10_24/I2C_Top_Level.xst" -ofn "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/I2C_Project_10_24/I2C_Top_Level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc nexys4ddr_master.ucf -p xc7a100t-csg324-3 I2C_Top_Level.ngc I2C_Top_Level.ngd  
+map -intstyle ise -p xc7a100t-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -mt off -ir off -pr off -lc off -power off -o I2C_Top_Level_map.ncd I2C_Top_Level.ngd I2C_Top_Level.pcf 
+par -w -intstyle ise -ol high -mt off I2C_Top_Level_map.ncd I2C_Top_Level.ncd I2C_Top_Level.pcf 
+trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml I2C_Top_Level.twx I2C_Top_Level.ncd -o I2C_Top_Level.twr I2C_Top_Level.pcf -ucf nexys4ddr_master.ucf 
+bitgen -intstyle ise -f I2C_Top_Level.ut I2C_Top_Level.ncd 

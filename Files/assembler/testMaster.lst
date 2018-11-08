@@ -1,0 +1,80 @@
+               ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+               ;    Author    : Chanartip Soonthornwan                     ;
+               ;    Student_ID: 014353883                                  ;
+               ;    Email     : Chanartip.Soonthornwan@gmail.com           ;
+               ;    Subject   : CECS490                                    ;
+               ;    Assignment: Testing I2C Master                         ;
+               ;                                                           ;
+               ;    Current Version: 1.0                                   ;
+               ;    Date      : October 11, 2018                           ;
+               ;                                                           ;
+               ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+               I2C_ADDR_PORT	EQU		0001
+               I2C_DATA_PORT	EQU		0002
+               I2C_CMD_PORT	EQU		0003
+               I2C_STATUS_PORT EQU		0004
+               SW_ADDR_PORT	EQU		0005
+               SW_DATA_PORT	EQU 	0006
+               
+               ADDR_REG		EQU		R1
+               DATA_REG		EQU		R2
+               CMD_REG			EQU		R3
+               READY_REG		EQU		R4
+               FIRE_REG		EQU		R5	
+               
+                           ADDRESS 0000
+               INIT
+               			LOAD	ADDR_REG, 0072
+0000 AE01 0072
+               			LOAD 	DATA_REG, 00B3
+0002 AE02 00B3
+               			LOAD	CMD_REG,  0001
+0004 AE03 0001
+               			
+               START       ENINT
+0006 1E00               
+               ; Main Loop
+               MAIN
+               			JUMP	MAIN
+0007 A400 0007
+               			
+               
+               ;=============================================================
+               ;   ISR vectored through 0FFE
+               ;   Jump to ISR routine
+               ;=============================================================	
+               			ADDRESS 0E00
+               ISR
+               			INPUT	READY_REG, I2C_STATUS_PORT
+0E00 A204 0004
+               			COMP	READY_REG, 0001
+0E02 9804 0001
+               			JUMPZ	I2C_READY_TO_START
+0E04 AA00 0e07
+               			
+               			RETEN
+0E06 4600               			
+               I2C_READY_TO_START		
+               				
+               			INPUT	ADDR_REG, SW_ADDR_PORT
+0E07 A201 0005
+               			INPUT 	DATA_REG, SW_DATA_PORT
+0E09 A202 0006
+               			
+               			OUTPUT	ADDR_REG, I2C_ADDR_PORT
+0E0B B801 0001
+               			OUTPUT  DATA_REG, I2C_DATA_PORT
+0E0D B802 0002
+               			OUTPUT 	CMD_REG,  I2C_CMD_PORT
+0E0F B803 0003
+               		
+               			RETEN
+0E11 4600               
+               
+               			ADDRESS 0FFE
+               			
+               ENDIT
+                           JUMP ISR
+0FFE A400 0e00
+               
+                           END

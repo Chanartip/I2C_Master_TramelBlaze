@@ -1,0 +1,67 @@
+;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+;    Author    : Chanartip Soonthornwan                     ;
+;    Student_ID: 014353883                                  ;
+;    Email     : Chanartip.Soonthornwan@gmail.com           ;
+;    Subject   : CECS490                                    ;
+;    Assignment: Testing I2C Master                         ;
+;                                                           ;
+;    Current Version: 1.0                                   ;
+;    Date      : October 11, 2018                           ;
+;                                                           ;
+;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+I2C_ADDR_PORT	EQU		0001
+I2C_DATA_PORT	EQU		0002
+I2C_CMD_PORT	EQU		0003
+I2C_STATUS_PORT EQU		0004
+SW_ADDR_PORT	EQU		0005
+SW_DATA_PORT	EQU 	0006
+
+ADDR_REG		EQU		R1
+DATA_REG		EQU		R2
+CMD_REG			EQU		R3
+READY_REG		EQU		R4
+FIRE_REG		EQU		R5	
+
+            ADDRESS 0000
+INIT
+			LOAD	ADDR_REG, 0072
+			LOAD 	DATA_REG, 00B3
+			LOAD	CMD_REG,  0001
+			
+START       ENINT
+
+; Main Loop
+MAIN
+			JUMP	MAIN
+			
+
+;=============================================================
+;   ISR vectored through 0FFE
+;   Jump to ISR routine
+;=============================================================	
+			ADDRESS 0E00
+ISR
+			INPUT	READY_REG, I2C_STATUS_PORT
+			COMP	READY_REG, 0001
+			JUMPZ	I2C_READY_TO_START
+			
+			RETEN
+			
+I2C_READY_TO_START		
+				
+			INPUT	ADDR_REG, SW_ADDR_PORT
+			INPUT 	DATA_REG, SW_DATA_PORT
+			
+			OUTPUT	ADDR_REG, I2C_ADDR_PORT
+			OUTPUT  DATA_REG, I2C_DATA_PORT
+			OUTPUT 	CMD_REG,  I2C_CMD_PORT
+		
+			RETEN
+
+
+			ADDRESS 0FFE
+			
+ENDIT
+            JUMP ISR
+
+            END
