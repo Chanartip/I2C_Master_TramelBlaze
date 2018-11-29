@@ -1,0 +1,62 @@
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Top_Level_tb_isim_beh.exe -prj C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Top_Level_tb_beh.prj work.I2C_Top_Level_tb work.glbl 
+ISim P.20131013 (signature 0x7708f090)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/ipcore_dir/stack_ram.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/ipcore_dir/scratch_ram.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/tramelblaze.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/Mux4to1.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/led_controller.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/ipcore_dir/tb_rom.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/hex_to7segment.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/Debounce.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/tramelblaze_top.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/SSG_Driver.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Interface.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Core.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Top_Level.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/i2c_slave.v" into library work
+Analyzing Verilog file "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Top_Level_tb.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:1016 - "C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Top_Level_tb.v" Line 20: Port anode is not connected to this instance
+Completed static elaboration
+Compiling module I2C_Core
+Compiling module PED
+Compiling module Debounce
+Compiling module I2C_Interface
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="artix...
+Compiling module stack_ram
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="artix...
+Compiling module scratch_ram
+Compiling module tramelblaze
+Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
+Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
+Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
+Compiling module BLK_MEM_GEN_V7_3(C_FAMILY="artix...
+Compiling module tb_rom
+Compiling module tramelblaze_top
+Compiling module hex_to7segment
+Compiling module led_controller
+Compiling module Mux4to1
+Compiling module SSG_Driver
+Compiling module AISO_RST
+Compiling module I2C_Top_Level
+Compiling module I2CTest
+Compiling module I2CTest(slaveaddress=7'b1010101)
+Compiling module I2CTest(slaveaddress=7'b01)
+Compiling module I2C_Top_Level_tb
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 13 sub-compilation(s) to finish...
+Compiled 32 Verilog Units
+Built simulation executable C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/I2C_Top_Level_tb_isim_beh.exe
+Fuse Memory Usage: 34928 KB
+Fuse CPU Usage: 702 ms

@@ -1,0 +1,207 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 3
+-n 3 -fastpaths -xml TOP_LEVEL.twx TOP_LEVEL.ncd -o TOP_LEVEL.twr TOP_LEVEL.pcf
+-ucf nexys4ddr_master.ucf
+
+Design file:              TOP_LEVEL.ncd
+Physical constraint file: TOP_LEVEL.pcf
+Device,package,speed:     xc7a100t,csg324,C,-3 (PRODUCTION 1.10 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:2698 - No timing constraints found, doing default enumeration.
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Setup/Hold to clock clk
+------------+------------+------------+------------+------------+------------------+--------+
+            |Max Setup to|  Process   |Max Hold to |  Process   |                  | Clock  |
+Source      | clk (edge) |   Corner   | clk (edge) |   Corner   |Internal Clock(s) | Phase  |
+------------+------------+------------+------------+------------+------------------+--------+
+bt_fire_i   |   -0.355(R)|      FAST  |    2.245(R)|      SLOW  |clk_w             |   0.000|
+rst         |   -0.382(R)|      FAST  |    2.030(R)|      SLOW  |clk_w             |   0.000|
+sw_addr_i<0>|    2.751(R)|      SLOW  |   -0.584(R)|      SLOW  |clk_w             |   0.000|
+sw_addr_i<1>|    1.557(R)|      FAST  |    0.160(R)|      SLOW  |clk_w             |   0.000|
+sw_addr_i<2>|    2.653(R)|      SLOW  |   -0.382(R)|      FAST  |clk_w             |   0.000|
+sw_addr_i<3>|    2.365(R)|      SLOW  |   -0.374(R)|      FAST  |clk_w             |   0.000|
+sw_addr_i<4>|    2.411(R)|      SLOW  |   -0.343(R)|      SLOW  |clk_w             |   0.000|
+sw_addr_i<5>|    2.081(R)|      SLOW  |   -0.418(R)|      SLOW  |clk_w             |   0.000|
+sw_addr_i<6>|    2.518(R)|      SLOW  |   -0.494(R)|      FAST  |clk_w             |   0.000|
+sw_data_i<0>|    3.482(R)|      SLOW  |   -0.935(R)|      FAST  |clk_w             |   0.000|
+sw_data_i<1>|    1.609(R)|      FAST  |    0.084(R)|      SLOW  |clk_w             |   0.000|
+sw_data_i<2>|    2.557(R)|      SLOW  |   -0.316(R)|      FAST  |clk_w             |   0.000|
+sw_data_i<3>|    1.570(R)|      SLOW  |    0.188(R)|      SLOW  |clk_w             |   0.000|
+sw_data_i<4>|    2.224(R)|      SLOW  |   -0.179(R)|      SLOW  |clk_w             |   0.000|
+sw_data_i<5>|    1.937(R)|      SLOW  |   -0.292(R)|      SLOW  |clk_w             |   0.000|
+sw_data_i<6>|    2.211(R)|      SLOW  |   -0.237(R)|      SLOW  |clk_w             |   0.000|
+sw_data_i<7>|    1.585(R)|      FAST  |    0.072(R)|      SLOW  |clk_w             |   0.000|
+------------+------------+------------+------------+------------+------------------+--------+
+
+Clock clk to Pad
+------------+-----------------+------------+-----------------+------------+------------------+--------+
+            |Max (slowest) clk|  Process   |Min (fastest) clk|  Process   |                  | Clock  |
+Destination |  (edge) to PAD  |   Corner   |  (edge) to PAD  |   Corner   |Internal Clock(s) | Phase  |
+------------+-----------------+------------+-----------------+------------+------------------+--------+
+anode<0>    |        10.322(R)|      SLOW  |         3.805(R)|      FAST  |clk_w             |   0.000|
+anode<1>    |        10.351(R)|      SLOW  |         3.827(R)|      FAST  |clk_w             |   0.000|
+anode<2>    |        11.209(R)|      SLOW  |         4.291(R)|      FAST  |clk_w             |   0.000|
+anode<3>    |        11.299(R)|      SLOW  |         4.312(R)|      FAST  |clk_w             |   0.000|
+sseg<0>     |        12.730(R)|      SLOW  |         5.146(R)|      FAST  |clk_w             |   0.000|
+sseg<1>     |        12.688(R)|      SLOW  |         5.022(R)|      FAST  |clk_w             |   0.000|
+sseg<2>     |        12.753(R)|      SLOW  |         4.966(R)|      FAST  |clk_w             |   0.000|
+sseg<3>     |        13.267(R)|      SLOW  |         5.361(R)|      FAST  |clk_w             |   0.000|
+sseg<4>     |        12.294(R)|      SLOW  |         4.759(R)|      FAST  |clk_w             |   0.000|
+sseg<5>     |        12.582(R)|      SLOW  |         4.937(R)|      FAST  |clk_w             |   0.000|
+sseg<6>     |        12.355(R)|      SLOW  |         4.807(R)|      FAST  |clk_w             |   0.000|
+------------+-----------------+------------+-----------------+------------+------------------+--------+
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    7.736|         |         |         |
+---------------+---------+---------+---------+---------+
+
+Pad to Pad
+---------------+---------------+---------+
+Source Pad     |Destination Pad|  Delay  |
+---------------+---------------+---------+
+sw_addr_i<0>   |sseg<0>        |    9.490|
+sw_addr_i<0>   |sseg<1>        |    9.513|
+sw_addr_i<0>   |sseg<2>        |    9.499|
+sw_addr_i<0>   |sseg<3>        |   10.015|
+sw_addr_i<0>   |sseg<4>        |    8.740|
+sw_addr_i<0>   |sseg<5>        |    9.314|
+sw_addr_i<0>   |sseg<6>        |    8.812|
+sw_addr_i<1>   |sseg<0>        |    8.837|
+sw_addr_i<1>   |sseg<1>        |    8.594|
+sw_addr_i<1>   |sseg<2>        |    8.984|
+sw_addr_i<1>   |sseg<3>        |    9.374|
+sw_addr_i<1>   |sseg<4>        |    8.312|
+sw_addr_i<1>   |sseg<5>        |    8.811|
+sw_addr_i<1>   |sseg<6>        |    8.373|
+sw_addr_i<2>   |sseg<0>        |    9.229|
+sw_addr_i<2>   |sseg<1>        |    8.983|
+sw_addr_i<2>   |sseg<2>        |    8.927|
+sw_addr_i<2>   |sseg<3>        |    9.752|
+sw_addr_i<2>   |sseg<4>        |    8.776|
+sw_addr_i<2>   |sseg<5>        |    8.742|
+sw_addr_i<2>   |sseg<6>        |    8.852|
+sw_addr_i<3>   |sseg<0>        |   10.159|
+sw_addr_i<3>   |sseg<1>        |   10.117|
+sw_addr_i<3>   |sseg<2>        |   10.182|
+sw_addr_i<3>   |sseg<3>        |   10.696|
+sw_addr_i<3>   |sseg<4>        |    9.723|
+sw_addr_i<3>   |sseg<5>        |   10.011|
+sw_addr_i<3>   |sseg<6>        |    9.784|
+sw_addr_i<4>   |sseg<0>        |    8.900|
+sw_addr_i<4>   |sseg<1>        |    8.923|
+sw_addr_i<4>   |sseg<2>        |    8.909|
+sw_addr_i<4>   |sseg<3>        |    9.425|
+sw_addr_i<4>   |sseg<4>        |    8.150|
+sw_addr_i<4>   |sseg<5>        |    8.724|
+sw_addr_i<4>   |sseg<6>        |    8.222|
+sw_addr_i<5>   |sseg<0>        |    9.221|
+sw_addr_i<5>   |sseg<1>        |    8.978|
+sw_addr_i<5>   |sseg<2>        |    9.368|
+sw_addr_i<5>   |sseg<3>        |    9.758|
+sw_addr_i<5>   |sseg<4>        |    8.696|
+sw_addr_i<5>   |sseg<5>        |    9.195|
+sw_addr_i<5>   |sseg<6>        |    8.757|
+sw_addr_i<6>   |sseg<0>        |    9.254|
+sw_addr_i<6>   |sseg<1>        |    9.008|
+sw_addr_i<6>   |sseg<2>        |    8.952|
+sw_addr_i<6>   |sseg<3>        |    9.777|
+sw_addr_i<6>   |sseg<4>        |    8.801|
+sw_addr_i<6>   |sseg<5>        |    8.767|
+sw_addr_i<6>   |sseg<6>        |    8.877|
+sw_data_i<0>   |sseg<0>        |    9.343|
+sw_data_i<0>   |sseg<1>        |    9.366|
+sw_data_i<0>   |sseg<2>        |    9.352|
+sw_data_i<0>   |sseg<3>        |    9.868|
+sw_data_i<0>   |sseg<4>        |    8.593|
+sw_data_i<0>   |sseg<5>        |    9.167|
+sw_data_i<0>   |sseg<6>        |    8.665|
+sw_data_i<1>   |sseg<0>        |    8.919|
+sw_data_i<1>   |sseg<1>        |    8.676|
+sw_data_i<1>   |sseg<2>        |    9.066|
+sw_data_i<1>   |sseg<3>        |    9.456|
+sw_data_i<1>   |sseg<4>        |    8.394|
+sw_data_i<1>   |sseg<5>        |    8.893|
+sw_data_i<1>   |sseg<6>        |    8.455|
+sw_data_i<2>   |sseg<0>        |    9.246|
+sw_data_i<2>   |sseg<1>        |    9.000|
+sw_data_i<2>   |sseg<2>        |    8.944|
+sw_data_i<2>   |sseg<3>        |    9.769|
+sw_data_i<2>   |sseg<4>        |    8.793|
+sw_data_i<2>   |sseg<5>        |    8.759|
+sw_data_i<2>   |sseg<6>        |    8.869|
+sw_data_i<3>   |sseg<0>        |    8.670|
+sw_data_i<3>   |sseg<1>        |    8.628|
+sw_data_i<3>   |sseg<2>        |    8.693|
+sw_data_i<3>   |sseg<3>        |    9.207|
+sw_data_i<3>   |sseg<4>        |    8.234|
+sw_data_i<3>   |sseg<5>        |    8.522|
+sw_data_i<3>   |sseg<6>        |    8.295|
+sw_data_i<4>   |sseg<0>        |    8.798|
+sw_data_i<4>   |sseg<1>        |    8.821|
+sw_data_i<4>   |sseg<2>        |    8.807|
+sw_data_i<4>   |sseg<3>        |    9.323|
+sw_data_i<4>   |sseg<4>        |    8.048|
+sw_data_i<4>   |sseg<5>        |    8.622|
+sw_data_i<4>   |sseg<6>        |    8.120|
+sw_data_i<5>   |sseg<0>        |    8.961|
+sw_data_i<5>   |sseg<1>        |    8.718|
+sw_data_i<5>   |sseg<2>        |    9.108|
+sw_data_i<5>   |sseg<3>        |    9.498|
+sw_data_i<5>   |sseg<4>        |    8.436|
+sw_data_i<5>   |sseg<5>        |    8.935|
+sw_data_i<5>   |sseg<6>        |    8.497|
+sw_data_i<6>   |sseg<0>        |    9.149|
+sw_data_i<6>   |sseg<1>        |    8.903|
+sw_data_i<6>   |sseg<2>        |    8.847|
+sw_data_i<6>   |sseg<3>        |    9.672|
+sw_data_i<6>   |sseg<4>        |    8.696|
+sw_data_i<6>   |sseg<5>        |    8.662|
+sw_data_i<6>   |sseg<6>        |    8.772|
+sw_data_i<7>   |sseg<0>        |    9.138|
+sw_data_i<7>   |sseg<1>        |    9.096|
+sw_data_i<7>   |sseg<2>        |    9.161|
+sw_data_i<7>   |sseg<3>        |    9.675|
+sw_data_i<7>   |sseg<4>        |    8.702|
+sw_data_i<7>   |sseg<5>        |    8.990|
+sw_data_i<7>   |sseg<6>        |    8.763|
+---------------+---------------+---------+
+
+
+Analysis completed Thu Nov 29 14:52:02 2018 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 5017 MB
+
+
+

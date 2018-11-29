@@ -1,0 +1,30 @@
+Command line:
+   I2C_Top_Level_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  65310
+
+Tue Nov 13 02:58:43 2018
+
+
+ Elaboration Time: 0.0625 sec
+
+ Current Memory Usage: 5335.32 Meg
+
+ Total Signals          : 585
+ Total Nets             : 1820
+ Total Signal Drivers   : 248
+ Total Blocks           : 69
+ Total Primitive Blocks : 54
+ Total Processes        : 341
+ Total Traceable Variables  : 1262
+ Total Scalar Nets and Variables : 150356
+Total Line Count : 2367
+Total Line Count : 2367
+
+ Total Simulation Time: 447.375 sec
+
+ Current Memory Usage: 4863.46 Meg
+
+Tue Nov 13 03:48:48 2018
+

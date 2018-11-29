@@ -16,6 +16,7 @@ module I2C_Core_tb;
 	wire SDA;
     
 localparam 
+    S_RD_ACK1_0 =  7, S_RD_ACK1_1 =  8, S_RD_ACK1_2 =  9, S_RD_ACK1_3 = 10,
     S_RD_ACK2_0 = 15, S_RD_ACK2_1 = 16, S_RD_ACK2_2 = 17, S_RD_ACK2_3 = 18;
 
 	// Instantiate the Unit Under Test (UUT)

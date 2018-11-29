@@ -1,0 +1,701 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.20 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.21 secs
+ 
+--> Reading design: I2C_Slave_Top.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Parsing
+  3) HDL Elaboration
+  4) HDL Synthesis
+       4.1) HDL Synthesis Report
+  5) Advanced HDL Synthesis
+       5.1) Advanced HDL Synthesis Report
+  6) Low Level Synthesis
+  7) Partition Report
+  8) Design Summary
+       8.1) Primitive and Black Box Usage
+       8.2) Device utilization summary
+       8.3) Partition Resource Summary
+       8.4) Timing Report
+            8.4.1) Clock Information
+            8.4.2) Asynchronous Control Signals Information
+            8.4.3) Timing Summary
+            8.4.4) Timing Details
+            8.4.5) Cross Clock Domains Report
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "I2C_Slave_Top.prj"
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "I2C_Slave_Top"
+Output Format                      : NGC
+Target Device                      : xc6slx16-3-csg324
+
+---- Source Options
+Top Module Name                    : I2C_Slave_Top
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Shift Register Extraction          : YES
+ROM Style                          : Auto
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Shift Register Minimum Size        : 2
+Use DSP Block                      : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+LUT Combining                      : Auto
+Reduce Control Sets                : Auto
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 16
+Register Duplication               : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Auto
+Use Synchronous Set                : Auto
+Use Synchronous Reset              : Auto
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Power Reduction                    : NO
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+DSP48 Utilization Ratio            : 100
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Parsing                                  *
+=========================================================================
+Analyzing Verilog file "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\Mux4to1.v" into library work
+Parsing module <Mux4to1>.
+Analyzing Verilog file "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\led_controller.v" into library work
+Parsing module <led_controller>.
+Analyzing Verilog file "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\hex_to7segment.v" into library work
+Parsing module <hex_to7segment>.
+Analyzing Verilog file "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\SSG_Driver.v" into library work
+Parsing module <SSG_Driver>.
+Analyzing Verilog file "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\i2c_slave_8_bit.v" into library work
+Parsing module <I2CslaveWith8bitsIO>.
+Analyzing Verilog file "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\AISO_rst.v" into library work
+Parsing module <AISO_rst>.
+Analyzing Verilog file "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\I2C_Slave_Top.v" into library work
+Parsing module <I2C_Slave_Top>.
+
+=========================================================================
+*                            HDL Elaboration                            *
+=========================================================================
+
+Elaborating module <I2C_Slave_Top>.
+WARNING:HDLCompiler:1127 - "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\I2C_Slave_Top.v" Line 35: Assignment to slave_addr ignored, since the identifier is never used
+
+Elaborating module <I2CslaveWith8bitsIO(I2C_ADR=7'b0100111)>.
+
+Elaborating module <BUF>.
+
+Elaborating module <SSG_Driver>.
+
+Elaborating module <hex_to7segment>.
+
+Elaborating module <led_controller>.
+
+Elaborating module <Mux4to1>.
+
+Elaborating module <AISO_rst>.
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Synthesizing Unit <I2C_Slave_Top>.
+    Related source file is "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\I2C_Slave_Top.v".
+    Summary:
+	no macro.
+Unit <I2C_Slave_Top> synthesized.
+
+Synthesizing Unit <I2CslaveWith8bitsIO>.
+    Related source file is "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\i2c_slave_8_bit.v".
+        I2C_ADR = 7'b0100111
+    Found 1-bit register for signal <adr_match>.
+    Found 1-bit register for signal <data_phase>.
+    Found 1-bit register for signal <got_ACK>.
+    Found 1-bit register for signal <op_read>.
+    Found 4-bit register for signal <bitcnt>.
+    Found 1-bit register for signal <incycle>.
+    Found 1-bit register for signal <SDAr>.
+    Found 8-bit register for signal <mem>.
+    Found 4-bit subtractor for signal <bitcnt[3]_GND_2_o_sub_1_OUT> created at line 69.
+    Found 1-bit 8-to-1 multiplexer for signal <bitcnt[2]_mem[7]_Mux_24_o> created at line 106.
+    Found 1-bit tristate buffer for signal <SDA> created at line 110
+    Found 4-bit comparator lessequal for signal <n0055> created at line 102
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  18 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+	inferred  12 Multiplexer(s).
+	inferred   1 Tristate(s).
+Unit <I2CslaveWith8bitsIO> synthesized.
+
+Synthesizing Unit <SSG_Driver>.
+    Related source file is "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\SSG_Driver.v".
+    Summary:
+	no macro.
+Unit <SSG_Driver> synthesized.
+
+Synthesizing Unit <hex_to7segment>.
+    Related source file is "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\hex_to7segment.v".
+    Found 16x7-bit Read Only RAM for signal <sseg>
+    Summary:
+	inferred   1 RAM(s).
+Unit <hex_to7segment> synthesized.
+
+Synthesizing Unit <led_controller>.
+    Related source file is "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\led_controller.v".
+    Found 2-bit register for signal <PresentState>.
+    Found 20-bit register for signal <count>.
+    Found finite state machine <FSM_0> for signal <PresentState>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 8                                              |
+    | Inputs             | 1                                              |
+    | Outputs            | 6                                              |
+    | Clock              | clk (rising_edge)                              |
+    | Reset              | reset (positive)                               |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 00                                             |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 20-bit adder for signal <count[19]_GND_8_o_add_1_OUT> created at line 41.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred  20 D-type flip-flop(s).
+	inferred   1 Multiplexer(s).
+	inferred   1 Finite State Machine(s).
+Unit <led_controller> synthesized.
+
+Synthesizing Unit <Mux4to1>.
+    Related source file is "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\Mux4to1.v".
+    Found 4-bit 4-to-1 multiplexer for signal <Q> created at line 34.
+    Summary:
+	inferred   1 Multiplexer(s).
+Unit <Mux4to1> synthesized.
+
+Synthesizing Unit <AISO_rst>.
+    Related source file is "C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\AISO_rst.v".
+    Found 1-bit register for signal <q1>.
+    Found 1-bit register for signal <q2>.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+Unit <AISO_rst> synthesized.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 16x7-bit single-port Read Only RAM                    : 1
+# Adders/Subtractors                                   : 2
+ 20-bit adder                                          : 1
+ 4-bit subtractor                                      : 1
+# Registers                                            : 11
+ 1-bit register                                        : 8
+ 20-bit register                                       : 1
+ 4-bit register                                        : 1
+ 8-bit register                                        : 1
+# Comparators                                          : 1
+ 4-bit comparator lessequal                            : 1
+# Multiplexers                                         : 14
+ 1-bit 2-to-1 multiplexer                              : 10
+ 1-bit 8-to-1 multiplexer                              : 1
+ 20-bit 2-to-1 multiplexer                             : 1
+ 4-bit 2-to-1 multiplexer                              : 1
+ 4-bit 4-to-1 multiplexer                              : 1
+# Tristates                                            : 1
+ 1-bit tristate buffer                                 : 1
+# FSMs                                                 : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <I2CslaveWith8bitsIO>.
+The following registers are absorbed into counter <bitcnt>: 1 register on signal <bitcnt>.
+Unit <I2CslaveWith8bitsIO> synthesized (advanced).
+
+Synthesizing (advanced) Unit <hex_to7segment>.
+INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_sseg> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+    -----------------------------------------------------------------------
+    | ram_type           | Distributed                         |          |
+    -----------------------------------------------------------------------
+    | Port A                                                              |
+    |     aspect ratio   | 16-word x 7-bit                     |          |
+    |     weA            | connected to signal <GND>           | high     |
+    |     addrA          | connected to signal <hex>           |          |
+    |     diA            | connected to signal <GND>           |          |
+    |     doA            | connected to signal <sseg>          |          |
+    -----------------------------------------------------------------------
+Unit <hex_to7segment> synthesized (advanced).
+
+Synthesizing (advanced) Unit <led_controller>.
+The following registers are absorbed into counter <count>: 1 register on signal <count>.
+Unit <led_controller> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# RAMs                                                 : 1
+ 16x7-bit single-port distributed Read Only RAM        : 1
+# Counters                                             : 2
+ 20-bit up counter                                     : 1
+ 4-bit down counter                                    : 1
+# Registers                                            : 16
+ Flip-Flops                                            : 16
+# Comparators                                          : 1
+ 4-bit comparator lessequal                            : 1
+# Multiplexers                                         : 11
+ 1-bit 2-to-1 multiplexer                              : 9
+ 1-bit 8-to-1 multiplexer                              : 1
+ 4-bit 4-to-1 multiplexer                              : 1
+# FSMs                                                 : 1
+# Xors                                                 : 1
+ 1-bit xor2                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <FSM_0> on signal <PresentState[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 00
+ 01    | 01
+ 10    | 10
+ 11    | 11
+-------------------
+WARNING:Xst:2170 - Unit I2C_Slave_Top : the following signal(s) form a combinatorial loop: i2c_slave/SDA_shadow, i2c_slave/start_or_stop, i2c_slave/SDA_GND_2_o_MUX_2_o, i2c_slave/SDA_SDA_shadow_XOR_1_o, i2c_slave/SDA_shadow_SDA_MUX_1_o.
+WARNING:Xst:3002 - This design contains one or more registers/latches that are directly
+   incompatible with the Spartan6 architecture. The two primary causes of this is
+   either a register or latch described with both an asynchronous set and
+   asynchronous reset, or a register or latch described with an asynchronous
+   set or reset which however has an initialization value of the opposite 
+   polarity (i.e. asynchronous reset with an initialization value of 1).
+    While this circuit can be built, it creates a sub-optimal implementation
+   in terms of area, power and performance. For a more optimal implementation
+   Xilinx highly recommends one of the following:
+
+          1) Remove either the set or reset from all registers and latches
+             if not needed for required functionality
+          2) Modify the code in order to produce a synchronous set
+             and/or reset (both is preferred)
+          3) Ensure all registers have the same initialization value as the
+             described asynchronous set or reset polarity
+          4) Use the -async_to_sync option to transform the asynchronous
+             set/reset to synchronous operation
+             (timing simulation highly recommended when using this option)
+
+  Please refer to http://www.xilinx.com search string "Spartan6 asynchronous set/reset" for more details.
+
+  List of register instances with asynchronous set or reset and opposite initialization value:
+    i2c_slave/adr_match in unit <I2C_Slave_Top>
+    i2c_slave/bitcnt_0 in unit <I2C_Slave_Top>
+    i2c_slave/bitcnt_1 in unit <I2C_Slave_Top>
+    i2c_slave/bitcnt_2 in unit <I2C_Slave_Top>
+
+
+Optimizing unit <I2C_Slave_Top> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block I2C_Slave_Top, actual ratio is 1.
+WARNING:Xst:1426 - The value init of the FF/Latch i2c_slave/bitcnt_2_LD hinder the constant cleaning in the block I2C_Slave_Top.
+   You should achieve better results by setting this init to 1.
+FlipFlop seven_seg_display/ssg1/count_17 has been replicated 1 time(s)
+FlipFlop seven_seg_display/ssg1/count_18 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 48
+ Flip-Flops                                            : 48
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Design Summary                             *
+=========================================================================
+
+Top Level Output File Name         : I2C_Slave_Top.ngc
+
+Primitive and Black Box Usage:
+------------------------------
+# BELS                             : 139
+#      BUF                         : 2
+#      GND                         : 1
+#      INV                         : 7
+#      LUT1                        : 19
+#      LUT2                        : 5
+#      LUT3                        : 6
+#      LUT4                        : 9
+#      LUT5                        : 2
+#      LUT6                        : 47
+#      MUXCY                       : 19
+#      MUXF7                       : 1
+#      VCC                         : 1
+#      XORCY                       : 20
+# FlipFlops/Latches                : 49
+#      FD                          : 4
+#      FDC                         : 27
+#      FDCE_1                      : 4
+#      FDE_1                       : 9
+#      FDP                         : 3
+#      FDPE_1                      : 1
+#      LD                          : 1
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 21
+#      IBUF                        : 9
+#      IOBUF                       : 1
+#      OBUF                        : 11
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 6slx16csg324-3 
+
+
+Slice Logic Utilization: 
+ Number of Slice Registers:              49  out of  18224     0%  
+ Number of Slice LUTs:                   95  out of   9112     1%  
+    Number used as Logic:                95  out of   9112     1%  
+
+Slice Logic Distribution: 
+ Number of LUT Flip Flop pairs used:    103
+   Number with an unused Flip Flop:      54  out of    103    52%  
+   Number with an unused LUT:             8  out of    103     7%  
+   Number of fully used LUT-FF pairs:    41  out of    103    39%  
+   Number of unique control sets:        12
+
+IO Utilization: 
+ Number of IOs:                          22
+ Number of bonded IOBs:                  22  out of    232     9%  
+
+Specific Feature Utilization:
+ Number of BUFG/BUFGCTRLs:                2  out of     16    12%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+Timing Report
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+----------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)      | Load  |
+-----------------------------------+----------------------------+-------+
+clk                                | BUFGP                      | 26    |
+SCL                                | IBUF+BUFG                  | 22    |
+i2c_slave/incycle                  | NONE(i2c_slave/bitcnt_2_LD)| 1     |
+-----------------------------------+----------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -3
+
+   Minimum period: 4.432ns (Maximum Frequency: 225.616MHz)
+   Minimum input arrival time before clock: 6.620ns
+   Maximum output required time after clock: 7.589ns
+   Maximum combinational path delay: 6.608ns
+
+Timing Details:
+---------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 3.126ns (frequency: 319.892MHz)
+  Total number of paths / destination ports: 755 / 49
+-------------------------------------------------------------------------
+Delay:               3.126ns (Levels of Logic = 2)
+  Source:            seven_seg_display/ssg1/count_10 (FF)
+  Destination:       seven_seg_display/ssg1/count_0 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: seven_seg_display/ssg1/count_10 to seven_seg_display/ssg1/count_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              3   0.447   1.015  seven_seg_display/ssg1/count_10 (seven_seg_display/ssg1/count_10)
+     LUT6:I0->O           12   0.203   1.156  seven_seg_display/ssg1/tick<19>1 (seven_seg_display/ssg1/tick<19>)
+     LUT6:I2->O            1   0.203   0.000  seven_seg_display/ssg1/Mcount_count_eqn_01 (seven_seg_display/ssg1/Mcount_count_eqn_0)
+     FDC:D                     0.102          seven_seg_display/ssg1/count_0
+    ----------------------------------------
+    Total                      3.126ns (0.955ns logic, 2.171ns route)
+                                       (30.5% logic, 69.5% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'SCL'
+  Clock period: 4.432ns (frequency: 225.616MHz)
+  Total number of paths / destination ports: 200 / 40
+-------------------------------------------------------------------------
+Delay:               2.216ns (Levels of Logic = 1)
+  Source:            i2c_slave/SDAr (FF)
+  Destination:       i2c_slave/got_ACK (FF)
+  Source Clock:      SCL rising
+  Destination Clock: SCL falling
+
+  Data Path: i2c_slave/SDAr to i2c_slave/got_ACK
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              11   0.447   0.882  i2c_slave/SDAr (i2c_slave/SDAr)
+     INV:I->O              1   0.206   0.579  i2c_slave/n00191_INV_0 (i2c_slave/n0019)
+     FDCE_1:D                  0.102          i2c_slave/got_ACK
+    ----------------------------------------
+    Total                      2.216ns (0.755ns logic, 1.461ns route)
+                                       (34.1% logic, 65.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Offset:              2.268ns (Levels of Logic = 1)
+  Source:            rst (PAD)
+  Destination:       aiso_rst/q2 (FF)
+  Destination Clock: clk rising
+
+  Data Path: rst to aiso_rst/q2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   1.222   0.616  rst_IBUF (rst_IBUF)
+     FDC:CLR                   0.430          aiso_rst/q1
+    ----------------------------------------
+    Total                      2.268ns (1.652ns logic, 0.616ns route)
+                                       (72.8% logic, 27.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'SCL'
+  Total number of paths / destination ports: 6 / 3
+-------------------------------------------------------------------------
+Offset:              6.620ns (Levels of Logic = 5)
+  Source:            SDA (PAD)
+  Destination:       i2c_slave/incycle (FF)
+  Destination Clock: SCL falling
+
+  Data Path: SDA to i2c_slave/incycle
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IOBUF:IO->O           4   1.222   0.931  SDA_IOBUF (N3)
+     LUT4:I0->O            1   0.203   0.579  i2c_slave/Mmux_SDA_shadow_SDA_MUX_1_o11 (i2c_slave/SDA_shadow_SDA_MUX_1_o)
+     BUF:I->O              2   0.568   0.721  i2c_slave/mybuf (i2c_slave/SDA_shadow)
+     LUT3:I1->O            1   0.203   0.579  i2c_slave/Mmux_SDA_GND_2_o_MUX_2_o11 (i2c_slave/SDA_GND_2_o_MUX_2_o)
+     BUF:I->O              2   0.568   0.616  i2c_slave/SOS_BUF (i2c_slave/start_or_stop)
+     FDCE_1:CLR                0.430          i2c_slave/incycle
+    ----------------------------------------
+    Total                      6.620ns (3.194ns logic, 3.426ns route)
+                                       (48.2% logic, 51.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 64 / 11
+-------------------------------------------------------------------------
+Offset:              6.244ns (Levels of Logic = 3)
+  Source:            seven_seg_display/ssg1/PresentState_FSM_FFd2 (FF)
+  Destination:       sseg<6> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: seven_seg_display/ssg1/PresentState_FSM_FFd2 to sseg<6>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q             10   0.447   1.221  seven_seg_display/ssg1/PresentState_FSM_FFd2 (seven_seg_display/ssg1/PresentState_FSM_FFd2)
+     LUT6:I0->O            7   0.203   1.021  seven_seg_display/ssg2/Mmux_Q11 (seven_seg_display/hex<0>)
+     LUT4:I0->O            1   0.203   0.579  seven_seg_display/ssg0/Mram_sseg41 (sseg_4_OBUF)
+     OBUF:I->O                 2.571          sseg_4_OBUF (sseg<4>)
+    ----------------------------------------
+    Total                      6.244ns (3.424ns logic, 2.820ns route)
+                                       (54.8% logic, 45.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'SCL'
+  Total number of paths / destination ports: 80 / 8
+-------------------------------------------------------------------------
+Offset:              7.221ns (Levels of Logic = 5)
+  Source:            i2c_slave/bitcnt_0_P_0 (FF)
+  Destination:       SDA (PAD)
+  Source Clock:      SCL falling
+
+  Data Path: i2c_slave/bitcnt_0_P_0 to SDA
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDP:C->Q              4   0.447   0.788  i2c_slave/bitcnt_0_P_0 (i2c_slave/bitcnt_0_P_0)
+     LUT3:I1->O           13   0.203   1.277  i2c_slave/bitcnt_01 (i2c_slave/bitcnt_0)
+     LUT6:I1->O            1   0.203   0.000  i2c_slave/Mmux_bitcnt[2]_mem[7]_Mux_24_o_3 (i2c_slave/Mmux_bitcnt[2]_mem[7]_Mux_24_o_3)
+     MUXF7:I1->O           1   0.140   0.808  i2c_slave/Mmux_bitcnt[2]_mem[7]_Mux_24_o_2_f7 (i2c_slave/bitcnt[2]_mem[7]_Mux_24_o)
+     LUT6:I3->O            1   0.205   0.579  i2c_slave/SDA_low_inv1 (i2c_slave/SDA_low_inv)
+     IOBUF:T->IO               2.571          SDA_IOBUF (SDA)
+    ----------------------------------------
+    Total                      7.221ns (3.769ns logic, 3.452ns route)
+                                       (52.2% logic, 47.8% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'i2c_slave/incycle'
+  Total number of paths / destination ports: 6 / 1
+-------------------------------------------------------------------------
+Offset:              7.589ns (Levels of Logic = 5)
+  Source:            i2c_slave/bitcnt_2_LD (LATCH)
+  Destination:       SDA (PAD)
+  Source Clock:      i2c_slave/incycle rising
+
+  Data Path: i2c_slave/bitcnt_2_LD to SDA
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD:G->Q               9   0.498   1.058  i2c_slave/bitcnt_2_LD (i2c_slave/bitcnt_2_LD)
+     LUT3:I0->O           14   0.205   1.322  i2c_slave/bitcnt_11 (i2c_slave/bitcnt_1)
+     LUT6:I0->O            1   0.203   0.000  i2c_slave/Mmux_bitcnt[2]_mem[7]_Mux_24_o_3 (i2c_slave/Mmux_bitcnt[2]_mem[7]_Mux_24_o_3)
+     MUXF7:I1->O           1   0.140   0.808  i2c_slave/Mmux_bitcnt[2]_mem[7]_Mux_24_o_2_f7 (i2c_slave/bitcnt[2]_mem[7]_Mux_24_o)
+     LUT6:I3->O            1   0.205   0.579  i2c_slave/SDA_low_inv1 (i2c_slave/SDA_low_inv)
+     IOBUF:T->IO               2.571          SDA_IOBUF (SDA)
+    ----------------------------------------
+    Total                      7.589ns (3.822ns logic, 3.767ns route)
+                                       (50.4% logic, 49.6% route)
+
+=========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 49 / 7
+-------------------------------------------------------------------------
+Delay:               6.608ns (Levels of Logic = 4)
+  Source:            sw<5> (PAD)
+  Destination:       sseg<6> (PAD)
+
+  Data Path: sw<5> to sseg<6>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   1.222   0.808  sw_5_IBUF (sw_5_IBUF)
+     LUT6:I3->O            7   0.205   1.021  seven_seg_display/ssg2/Mmux_Q21 (seven_seg_display/hex<1>)
+     LUT4:I0->O            1   0.203   0.579  seven_seg_display/ssg0/Mram_sseg61 (sseg_6_OBUF)
+     OBUF:I->O                 2.571          sseg_6_OBUF (sseg<6>)
+    ----------------------------------------
+    Total                      6.608ns (4.201ns logic, 2.407ns route)
+                                       (63.6% logic, 36.4% route)
+
+=========================================================================
+
+Cross Clock Domains Report:
+--------------------------
+
+Clock to Setup on destination clock SCL
+-----------------+---------+---------+---------+---------+
+                 | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock     |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+-----------------+---------+---------+---------+---------+
+SCL              |         |         |    3.314|         |
+i2c_slave/incycle|         |         |    3.741|         |
+-----------------+---------+---------+---------+---------+
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |    3.126|         |         |         |
+---------------+---------+---------+---------+---------+
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 12.17 secs
+ 
+--> 
+
+Total memory usage is 4522616 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    4 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+

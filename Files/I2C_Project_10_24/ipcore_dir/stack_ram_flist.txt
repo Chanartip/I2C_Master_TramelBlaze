@@ -1,4 +1,5 @@
 # Output products list for <stack_ram>
+_xmsgs\pn_parser.xmsgs
 stack_ram.asy
 stack_ram.gise
 stack_ram.ngc

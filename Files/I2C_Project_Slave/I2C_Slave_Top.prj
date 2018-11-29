@@ -1,0 +1,7 @@
+verilog work "Mux4to1.v"
+verilog work "led_controller.v"
+verilog work "hex_to7segment.v"
+verilog work "SSG_Driver.v"
+verilog work "i2c_slave_8_bit.v"
+verilog work "AISO_rst.v"
+verilog work "I2C_Slave_Top.v"

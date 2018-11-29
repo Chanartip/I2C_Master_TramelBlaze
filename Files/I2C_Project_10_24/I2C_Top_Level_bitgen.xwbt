@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\I2C_Project_10_24\I2C_Top_Level.ncd
-OUTFILE=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\I2C_Project_10_24\I2C_Top_Level.bit
+INFILE=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_10_24\I2C_Top_Level.ncd
+OUTFILE=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_10_24\I2C_Top_Level.bit
 FAMILY=Artix7
 PART=xc7a100t-3csg324
-WORKINGDIR=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\I2C_Project_10_24
+WORKINGDIR=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_10_24
 LICENSE=WebPack
 USER_INFO=211085786_0_0_935

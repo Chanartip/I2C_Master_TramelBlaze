@@ -26,6 +26,9 @@
 //    in student project work is subject to dismissal from the class           //
 //                                                                             //
 //*****************************************************************************//
+//  Version 1.2 (November 11, 2018)
+//      - Added anode and sseg for displaying switches current value
+//
 //  Version 1.1 (October 12, 2018)
 //      - Added sw_addr_i and sw_data_i for interacting to a user input
 //          to select slave address and data to send
@@ -41,7 +44,10 @@ module I2C_Top_Level(
     
     input wire       bt_fire_i, // button down to fire a transmission
     input wire [6:0] sw_addr_i, // switches[15:9] for 7-bit address input
-    input wire [7:0] sw_data_i  // switches[7:0] for 8-bit data input
+    input wire [7:0] sw_data_i, // switches[7:0] for 8-bit data input
+    
+    output wire [7:0] anode,    // Anodes of 7-segment display
+    output wire [6:0] sseg      // 7 segments
 );    
     wire        sync_rst;       // Synchronized reset signal wire
     
@@ -116,6 +122,18 @@ module I2C_Top_Level(
     .INTERRUPT_ACK(tb_intr_ack_w)
     );
    
+    // Seven Segment Display
+    //  Display Address on switches and data
+    //  to send out over I2C as for observation
+    SSG_Driver ssg_driver(
+    .clk(clk), 
+    .rst(sync_rst), 
+    .count({1'b0, sw_addr_i, sw_data_i}), 
+    .anode(anode[3:0]), 
+    .sseg(sseg)
+    );
+    assign anode[7:4] = 4'b1111;
+    
     // Asynchronize-In-Synchronize-Out Reset
     //  In used for initiating synchronous reset signal
     //  to the whole design.

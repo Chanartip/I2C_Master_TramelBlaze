@@ -11,8 +11,9 @@
 //    Created by Chanartip Soonthornwan on October 3, 2018.                    //
 //    Copyright @ 2018 Chanartip Soonthornwan. All rights reserved.            //
 //                                                                             //
-//    Abstract:      I2C at bit operation controlling data path and controls   //
-//                   via a state machine with eight states.                    //
+//    Abstract:      I2C at bit-level operation controlling data path and      //
+//                   controls via a state machine which is scheduling          //
+//                   inputs and outputs.                                       //
 //                                                                             //
 //    In submitting this file for class work at CSULB                          //
 //    I am confirming that this is my work and the work                        //
@@ -25,6 +26,11 @@
 //    in student project work is subject to dismissal from the class           //
 //                                                                             //
 //*****************************************************************************//
+// Version 2.1 (November 10, 2018)
+//      - Added al_count for to check if there is an arbitrary lost from
+//          the master waiting from a slave's signal. If there is no response
+//          from a slave, then the master will return to idle state.
+//
 // Version 2.0 (October 21, 2018)
 //      - Remodeled Clock Divider to generate 400khz clock
 //      - Remodeled State Machine with more states
@@ -70,7 +76,7 @@ module I2C_Core(
     assign SCL = (scl_pad_oen) ? scl_pad_o : 1'bz;
     assign SDA = (sda_pad_oen) ? sda_pad_o : 1'bz;
     assign sda_pad_i = (~sda_pad_oen)? SDA : 1'bz;
-    
+
 //____________________________ Clk Divider _________________________________
 //  
 //  Generates slow clock (400khz) by ticking every 2.5 us, and each tick
@@ -148,9 +154,8 @@ module I2C_Core(
         S_RD_ACK2_0 = 15, S_RD_ACK2_1 = 16, S_RD_ACK2_2 = 17, S_RD_ACK2_3 = 18,
         S_STOP_0    = 19, S_STOP_1    = 20,
    
-        CMD_IDLE    =  1, CMD_START   =  2,
-        CMD_WR_ADDR =  3, CMD_RD_ACK  =  4,
-        CMD_WR_DATA =  5, CMD_STOP    =  6,
+        CMD_IDLE    =  1, CMD_START   =  2, CMD_WR_ADDR =  3, CMD_RD_ACK  =  4,
+        CMD_WR_DATA =  5, CMD_STOP    =  6, CMD_AR_LOST =  7,
 
         WRITE_BIT   = 1'b0,
         HIGH        = 1'b1,
@@ -159,6 +164,7 @@ module I2C_Core(
     // Registers
     reg [7:0] data_reg;     // Holding immediate data(address or data)
     reg [2:0] bit_count;    // Index for data_reg
+    reg [2:0] al_count;     // Arbitrary lost count 
     reg [2:0] cmd;          // Special command on some states
     reg [4:0] state;        // Present State
     reg [4:0] next_state;   // Next State
@@ -178,34 +184,37 @@ module I2C_Core(
             scl_pad_o   <= HIGH;
             sda_pad_o   <= HIGH;
             data_reg    <= 0;
-            bit_count   <= 0;          
+            bit_count   <= 0;
+            al_count    <= 0;
             next_state  <= S_IDLE;
             i2c_ready_o <= HIGH;
         end
         else begin
             case(state)
                 // IDLE STATE
-                //  SCL and SDA are high until recieve a start signal
+                //  SCL and SDA are high until receive a start signal
                 S_IDLE: begin                       
-                    if(i2c_start_i) begin           // recieve start signal
+                    if(i2c_start_i) begin           // receive start signal
                         cmd         <= CMD_START;
                         scl_pad_oen <= HIGH;
                         sda_pad_oen <= HIGH;
                         scl_pad_o   <= HIGH;
                         sda_pad_o   <= HIGH;
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count;  
+                        bit_count   <= bit_count;
+                        al_count    <= al_count;  
                         next_state  <= S_START_0;
                         i2c_ready_o <= LOW;         // now i2c is busy
                     end
-                    else begin                      // still idleling
+                    else begin                      // still idling
                         cmd         <= CMD_IDLE;
                         scl_pad_oen <= HIGH;
                         sda_pad_oen <= HIGH;
                         scl_pad_o   <= HIGH;
                         sda_pad_o   <= HIGH;
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count; 
+                        bit_count   <= bit_count;
+                        al_count    <= al_count; 
                         next_state  <= S_IDLE;
                         i2c_ready_o <= HIGH;
                     end
@@ -221,7 +230,8 @@ module I2C_Core(
                         scl_pad_o   <= HIGH;        
                         sda_pad_o   <= LOW;
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count; 
+                        bit_count   <= bit_count;
+                        al_count    <= al_count; 
                         next_state  <= S_START_1;
                 end
                 S_START_1: begin
@@ -232,6 +242,7 @@ module I2C_Core(
                         sda_pad_o   <= LOW;
                         data_reg    <= {i2c_addr_i, WRITE_BIT}; // Loading data
                         bit_count   <= 3'd7;                    // MSB Index
+                        al_count    <= 0;
                         next_state  <= S_WR_ADDR_0;
                 end
                 
@@ -247,7 +258,8 @@ module I2C_Core(
                         scl_pad_o   <= LOW;
                         sda_pad_o   <= data_reg[bit_count];
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count; 
+                        bit_count   <= bit_count;
+                        al_count    <= al_count; 
                         next_state  <= S_WR_ADDR_1;  
                 end
                 S_WR_ADDR_1: begin
@@ -257,7 +269,8 @@ module I2C_Core(
                         scl_pad_o   <= HIGH;
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count; 
+                        bit_count   <= bit_count;
+                        al_count    <= al_count; 
                         next_state  <= S_WR_ADDR_2;
                 end
                 S_WR_ADDR_2: begin
@@ -267,7 +280,8 @@ module I2C_Core(
                         scl_pad_o   <= HIGH;
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count; 
+                        bit_count   <= bit_count;
+                        al_count    <= al_count; 
                         next_state  <= S_WR_ADDR_3; 
                 end
                 S_WR_ADDR_3: begin
@@ -277,7 +291,8 @@ module I2C_Core(
                         scl_pad_o   <= LOW;
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count -1; 
+                        bit_count   <= bit_count -1;
+                        al_count    <= al_count; 
                         next_state  <= (cmd == CMD_RD_ACK)? S_RD_ACK1_0: S_WR_ADDR_0;
                 end
                 
@@ -287,7 +302,6 @@ module I2C_Core(
                 //  of SCL clock. If the signal is valid, set data_reg with
                 //  i2c_data_i, and move to the next state.
                 //  Otherwise, come back to wait again.
-                //  **Note: This version doesn't have Artibute Lost**
                 S_RD_ACK1_0: begin
                         cmd         <= cmd;
                         scl_pad_oen <= HIGH;
@@ -296,16 +310,18 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
-                        next_state  <= S_RD_ACK1_1;
+                        al_count    <= al_count;
+                        next_state  <= (al_count == 3)? S_IDLE : S_RD_ACK1_1;
                 end
                 S_RD_ACK1_1: begin
-                        cmd         <= (sda_pad_i == LOW)? CMD_WR_DATA: CMD_RD_ACK;
+                        cmd         <= (sda_pad_i ==  LOW)? CMD_WR_DATA: cmd;
                         scl_pad_oen <= HIGH;
                         sda_pad_oen <= LOW;
                         scl_pad_o   <= HIGH;
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
+                        al_count    <= al_count;
                         next_state  <= S_RD_ACK1_2;
                 end
                 S_RD_ACK1_2: begin
@@ -316,6 +332,7 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
+                        al_count    <= al_count;
                         next_state  <= S_RD_ACK1_3;
                 end
                 S_RD_ACK1_3: begin
@@ -328,17 +345,19 @@ module I2C_Core(
                         if(cmd == CMD_WR_DATA) begin
                             data_reg   <= i2c_data_i;
                             bit_count  <= 3'd7;
+                            al_count   <= 0;
                             next_state <= S_WR_DATA_0;
                         end
                         else begin
                             data_reg   <= data_reg;
                             bit_count  <= bit_count;
+                            al_count   <= al_count +1;
                             next_state <= S_RD_ACK1_0;                        
                         end                                
                 end
                 
                 // WRITE STATE
-                //  Similar to above state, but outputing data instead of
+                //  Similar to above state, but outputting data instead of
                 //  the concentration of {slave address, write bit}
                 S_WR_DATA_0: begin       
                         cmd         <= cmd;                 
@@ -347,7 +366,8 @@ module I2C_Core(
                         scl_pad_o   <= LOW;
                         sda_pad_o   <= data_reg[bit_count];
                         data_reg    <= data_reg;
-                        bit_count   <= bit_count; 
+                        bit_count   <= bit_count;
+                        al_count    <= al_count; 
                         next_state  <= S_WR_DATA_1;  
                 end
                 S_WR_DATA_1: begin
@@ -358,6 +378,7 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
+                        al_count    <= al_count;
                         next_state  <= S_WR_DATA_2;
                 end
                 S_WR_DATA_2: begin
@@ -368,16 +389,18 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
+                        al_count    <= al_count;
                         next_state  <= S_WR_DATA_3; 
                 end
                 S_WR_DATA_3: begin
                         cmd         <= cmd;
                         scl_pad_oen <= HIGH;
-                        sda_pad_oen <= HIGH;//(cmd == CMD_RD_ACK)? LOW: HIGH;
+                        sda_pad_oen <= HIGH;
                         scl_pad_o   <= LOW;
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count -1; 
+                        al_count    <= al_count;
                         next_state  <= (cmd == CMD_RD_ACK)? S_RD_ACK2_0: S_WR_DATA_0;
                 end
                 
@@ -391,7 +414,8 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
-                        next_state  <= S_RD_ACK2_1;
+                        al_count    <= al_count;
+                        next_state  <= (al_count == 3)? S_IDLE : S_RD_ACK2_1;
                 end
                 S_RD_ACK2_1: begin
                         cmd         <= (sda_pad_i == LOW)? CMD_STOP: CMD_RD_ACK;
@@ -401,6 +425,7 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
+                        al_count    <= al_count;
                         next_state  <= S_RD_ACK2_2;
                 end
                 S_RD_ACK2_2: begin
@@ -411,6 +436,7 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
+                        al_count    <= al_count;
                         next_state  <= S_RD_ACK2_3;
                 end
                 S_RD_ACK2_3: begin
@@ -421,7 +447,9 @@ module I2C_Core(
                         sda_pad_o   <= sda_pad_o;
                         data_reg    <= data_reg;
                         bit_count   <= bit_count; 
+                        al_count    <= al_count +1;
                         next_state  <= (cmd == CMD_STOP)? S_STOP_0 : S_RD_ACK2_0;
+                        
                 end
                 
                 // STOP STATE

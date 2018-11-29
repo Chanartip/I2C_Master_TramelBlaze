@@ -1,0 +1,1 @@
+vhdtdtfi -lang verilog -prj I2C_Project_10_24 -o C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24/TSI.tfi -lib work C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_10_24//TSI.v -module TSI -template C:/Xilinx/14.7/ISE_DS/ISE//data/tfi.tft -deleteonerror 

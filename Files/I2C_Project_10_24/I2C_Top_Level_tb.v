@@ -67,8 +67,8 @@ module I2C_Top_Level_tb;
         #DB_TIME bt_fire_i = 0;
         
         // Setting switches input and press the fire button, then release
-        sw_addr_i = 7'h72;
-        sw_data_i = 8'hAA;
+        sw_addr_i = 7'h02; 
+        sw_data_i = 8'hA8;
         #DB_TIME bt_fire_i = 1;
         #DB_TIME bt_fire_i = 0;  
         
