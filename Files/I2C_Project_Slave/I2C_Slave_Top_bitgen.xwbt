@@ -1,8 +1,0 @@
-INTSTYLE=ise
-INFILE=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\I2C_Slave_Top.ncd
-OUTFILE=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave\I2C_Slave_Top.bit
-FAMILY=Spartan6
-PART=xc6slx16-3csg324
-WORKINGDIR=C:\Users\Charles\OneDrive\2018Fall_CSULB\CECS490B\Current_Project\Files\I2C_Project_Slave
-LICENSE=WebPack
-USER_INFO=211085786_0_0_935
