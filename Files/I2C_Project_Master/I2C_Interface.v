@@ -115,6 +115,7 @@ module I2C_Interface (
     always@(posedge clk, posedge rst) begin
         if(rst)                  tb_intr_r_o <= 1'b0;        
         else if(tb_intr_ack_i)   tb_intr_r_o <= 1'b0;
+        else if(ready_pulse_w)   tb_intr_r_o <= 1'b1;
         else if(bt_fire_pulse_w) tb_intr_r_o <= 1'b1;
         else                     tb_intr_r_o <= tb_intr_r_o;
     end
@@ -130,7 +131,7 @@ module I2C_Interface (
         else
             i2c_address_o <= i2c_address_o;
     end
-    
+     
     // I2C Data Register
     //  Change output when port id is I2C_DATA_PORT,
     //  otherwise output stays the same.

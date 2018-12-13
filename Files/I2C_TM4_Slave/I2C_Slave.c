@@ -133,7 +133,7 @@ void I2C_Init(void)
     GPIO_PORTB_AMSEL_R &= ~0x0C; // Disable Analog Functionality on PB2 and PB3
     I2C0_MCR_R |= 0x00000020;    // Set I2C as a slave
     I2C0_SACKCTL_R |= 0x01;      // Enable ACK or NACK to be sent
-    I2C0_SOAR_R |= 0x0F;         // Set slave address to 0001 0110
+    I2C0_SOAR_R |= 0x0F;         // Set slave address to 0001 1111
     I2C0_SCSR_R |= 0x01;         // Enable Slave Operations
     I2C0_SIMR_R |= 0x01;         // Enable Slave Interrupts
         
@@ -162,7 +162,7 @@ void PortB_Init(void){
     
     SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOB;
     while((SYSCTL_RCGCGPIO_R & SYSCTL_RCGC2_GPIOB) == 0) {}; // Wait until ready    
-    GPIO_PORTB_AFSEL_R &= ~0x01;        // Disable Altenate function on PB0
+    GPIO_PORTB_AFSEL_R &= ~0x01;        // Disable Alternative function on PB0
     GPIO_PORTB_AMSEL_R &= ~0x01;        // Disable Analog Mode on PB0
     GPIO_PORTB_PCTL_R  &= ~0x0000000F;  // Reset PB0 to GPIO
     GPIO_PORTB_DIR_R   |=  0x01;        // Set PB0 as output port

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-12-02T16:21:34</DateModified>
+  <DateModified>2018-12-12T22:09:44</DateModified>
   <ModuleName>I2C_Slave_Top</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
   <SavedFilePath>C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_Slave/iseconfig/I2C_Slave_Top.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_Slave</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>C:/Users/Charles/OneDrive/2018Fall_CSULB/CECS490B/Current_Project/Files/I2C_Project_Slave\</ImplementationReportsDirectory>
   <DateInitialized>2018-12-02T16:21:34</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

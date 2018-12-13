@@ -25,7 +25,7 @@
 //    in student project work is subject to dismissal from the class           //
 //                                                                             //
 //*****************************************************************************//
-module TOP_LEVEL( 
+module TOP_LEVEL(  
     input  wire       clk,          // ON-BOARD clock
     input  wire       rst,          // BUTTON UP for reset signal
     input  wire       bt_fire_i,    // BUTTON DOWN for fire i2c transmission
@@ -59,7 +59,7 @@ module TOP_LEVEL(
     .anode(anode_w),       // anode output to TSI
     .sseg(sseg_w)          // sseg output to TSI
     );
-    
+     
     // TSI Instantiate
     TSI tsi_inst (
     .clk(clk),              // GLOBAL CLOCK
@@ -67,7 +67,7 @@ module TOP_LEVEL(
     .bt_fire_i(bt_fire_i),  // ON-BOARD BUTTON DOWN
     .sw_addr_i(sw_addr_i),  // ON-BOARD SWITCH[15:9]
     .sw_data_i(sw_data_i),  // ON-BOARD SWITCH[ 7:0] 
-    
+     
     .clk_o(clk_w),          // Clock from TSI to SOPC
     .rst_o(rst_w),          // Reset from TSI to SOPC
     .bt_fire_o(bt_fire_w),  // Fire from TSI to SOPC
@@ -77,7 +77,7 @@ module TOP_LEVEL(
     .SCL    (SCL),          // SCL from TSI to OUTSIDE
     .anode  (anode),        // anode from TSI to OUTSIDE
     .sseg   (sseg),         // sseg from TSI to OUTSIDE
-    
+     
     .SCL_i  (SCL_w),        // SCL from SOPC to TSI
     .anode_i(anode_w),      // anode from SOPC to TSI
     .sseg_i (sseg_w)        // sseg from SOPC to TSI

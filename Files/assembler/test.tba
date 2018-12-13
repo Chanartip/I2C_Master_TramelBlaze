@@ -1,0 +1,117 @@
+;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+;    Author    : Chanartip Soonthornwan                     ;
+;    Student_ID: 014353883                                  ;
+;    Email     : Chanartip.Soonthornwan@gmail.com           ;
+;    Subject   : CECS490                                    ;
+;    Assignment: Testing I2C Master                         ;
+;                                                           ;
+;    Current Version: 1.0                                   ;
+;    Date      : October 11, 2018                           ;
+;                                                           ;
+;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^;
+I2C_ADDR_PORT	EQU		0001
+I2C_DATA_PORT	EQU		0002
+I2C_CMD_PORT	EQU		0003
+I2C_STATUS_PORT EQU		0004
+SW_ADDR_PORT	EQU		0005
+SW_DATA_PORT	EQU 	0006
+
+ADDR_REG		EQU		R1
+DATA_REG		EQU		R2
+CMD_REG			EQU		R3
+READY_REG		EQU		R4
+FIRE_REG		EQU		R5
+DATA_			EQU		R6	
+
+A_	EQU 0061
+B_	EQU 0062
+C_	EQU 0063
+D_	EQU 0064
+E_	EQU 0065
+F_	EQU 0066
+G_	EQU 0067
+H_	EQU 0068
+I_	EQU 0069
+J_	EQU 006a
+K_	EQU 006b
+L_	EQU 006c
+M_	EQU 006d
+N_	EQU 006e
+O_	EQU 006f
+P_	EQU 0070
+Q_	EQU 0071
+R_	EQU 0072
+S_	EQU 0073
+T_	EQU 0074
+U_	EQU 0075
+V_	EQU 0076
+W_	EQU 0077
+X_	EQU 0078
+Y_	EQU 0079
+Z_	EQU 007a
+
+            ADDRESS 0000
+INIT
+			LOAD	ADDR_REG, 000F			; Preload TM4C address 0x0F
+			LOAD 	DATA_REG, 0000			; reset data register
+			LOAD	CMD_REG,  0001			; Must have
+			LOAD	DATA_, A_				; Set the first data as 'a'
+			
+START       ENINT
+
+; Main Loop
+MAIN
+			; nothing in main
+			JUMP	MAIN
+			
+
+;=============================================================
+;   ISR vectored through 0FFE
+;   Jump to ISR routine
+;=============================================================	
+			ADDRESS 0E00
+ISR
+			INPUT	READY_REG, I2C_STATUS_PORT		; Check ready status
+			COMP	READY_REG, 0001					; if(ready)
+			JUMPZ	I2C_READY_TO_START				; then jump to actual routine
+			
+			RETEN
+			
+I2C_READY_TO_START		
+			; Since I2C is ready, then output the a-z alphabet
+			; by output DATA_ register that hold value of a character
+			OUTPUT	ADDR_REG, I2C_ADDR_PORT
+			OUTPUT  DATA_,    I2C_DATA_PORT
+			OUTPUT 	CMD_REG,  I2C_CMD_PORT
+			
+			; Then make a delay, so it is not displaying too fast on the LCD
+DELAY
+            LOAD    R8, FFFF
+            LOAD    R9, 0019
+TAG
+            SUB     R8, 0001		; it is count down delay
+            JUMPNZ  TAG
+            LOAD    R8, FFFF
+            SUB     R9, 0001
+            JUMPNZ  TAG
+
+			; check if the current character is 'z'
+			; if 'z', then re-assign DATA_ to 'a'
+			; otherwise, increment char hex by one
+			COMP	DATA_, Z_
+			JUMPNZ	ADD_ONE
+			
+			LOAD	DATA_, A_		; re-assign to 'a'
+			RETEN
+			
+ADD_ONE
+			ADD		DATA_, 0001		; increment by one
+			RETEN
+
+
+			ADDRESS 0FFE
+			
+ENDIT
+            JUMP ISR
+
+            END
