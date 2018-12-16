@@ -35,6 +35,8 @@
                ADDRESS_	EQU 0003
                DATA_	EQU 0004
                CMD_	EQU 0005
+               II_	EQU 0006
+               KK_	EQU 0007
                
                			LOAD	R1, 0001
 0000 AE01 0001
@@ -52,94 +54,136 @@
 000C AE01 0061
                			STORE	R1, DATA_
 000E F401 0004
-               			LOAD	R1, 0000
-0010 AE01 0000
+               			LOAD	R1, 0001
+0010 AE01 0001
                			STORE	R1, CMD_
 0012 F401 0005
+               			LOAD	R1, 0000
+0014 AE01 0000
+               			STORE	R1, II_
+0016 F401 0006
+               			LOAD	R1, 0000
+0018 AE01 0000
+               			STORE	R1, KK_
+001A F401 0007
                
                MAIN
                			ENINT
-0014 1E00               			JUMP	LABEL1	;while loop check condition
-0015 A400 0017
+001C 1E00               			JUMP	LABEL1	;while loop check condition
+001D A400 001f
                LABEL0
                LABEL1
                			JUMP	LABEL0	;while loop
-0017 A400 0017
+001F A400 001f
                
                
                			ADDRESS 0300
                ISR
-               			LOAD	R4, 0000
-0300 AE04 0000
-               			STORE	R4, TEMP_
-0302 F404 0002
-               			LOAD	R4, 0000
-0304 AE04 0000
-               			STORE	R4, ADDRESS_
-0306 F404 0003
-               			; LOAD	R4, 0000
-               			; STORE	R4, DATA_
-               			LOAD	R4, 0001
-0308 AE04 0001
-               			STORE	R4, CMD_
-030A F404 0005
                			INPUT	R7, I2C_STATUS_PORT
-030C A207 0004
+0300 A207 0004
                			STORE	R7, TEMP_
-030E F407 0002
+0302 F407 0002
                			FETCH	R4, TEMP_
-0310 F004 0002
+0304 F004 0002
                			COMP 	R4, 0001
-0312 9804 0001
+0306 9804 0001
                			JUMPNZ	LABEL2	;if statement
-0314 AC00 0326
+0308 AC00 032b
                			INPUT	R7, SW_ADDR_PORT
-0316 A207 0005
+030A A207 0005
                			STORE	R7, ADDRESS_
-0318 F407 0003
-               			FETCH	R7, ADDRESS_
-031A F007 0003
-               			OUTPUT	R7, I2C_ADDR_PORT
-031C B807 0001
-               			FETCH	R7, DATA_
-031E F007 0004
-               			OUTPUT	R7, I2C_DATA_PORT
-0320 B807 0002
-               			FETCH	R7, CMD_
-0322 F007 0005
-               			OUTPUT	R7, I2C_CMD_PORT
-0324 B807 0003
-               LABEL2
-               			FETCH 	R4, 000F  ; TM4C LCD address
-0326 F004 000F
-               			OUTPUT  R4, I2C_ADDR_PORT
-0328 B804 0001
-               			FETCH	R4, DATA_
-032A F004 0004
-               			OUTPUT  R4, I2C_DATA_PORT
-032C B804 0002
-               			FETCH   R4, CMD_
-032E F004 0005
-               			OUTPUT  R4, I2C_CMD_PORT
-0330 B804 0003
+030C F407 0003
                			
-               			ADD 	R4, 0001
-0332 8204 0001
-               			STORE	R4, DATA_
-0334 F404 0004
-               			FETCH	R4, DATA_
-0336 F004 0004
-               			COMP 	R4, Z_
-0338 9804 007A
-               			JUMPNZ	LABEL3	;if statement
-033A AC00 0340
-               			LOAD	R4, A_
-033C AE04 0061
-               			STORE	R4, DATA_
-033E F404 0004
-               LABEL3
+               			COMP	R7, 000F ; compare ADDRESS_ to LCD address
+030E 9807 000F
+               			JUMPZ	PRINT_CHAR
+0310 AA00 031f
+               			INPUT	R8, SW_DATA_PORT ; get data from data switches to R8
+0312 A208 0006
+               			STORE	R8, TEMP_
+0314 F408 0002
+               
+               			OUTPUT	R7, I2C_ADDR_PORT ; R7 still holds ADDRESS_
+0316 B807 0001
+               			OUTPUT	R8, I2C_DATA_PORT ; R8 is holding switches data
+0318 B808 0002
+               			FETCH   R7, CMD_
+031A F007 0005
+               			OUTPUT  R7, I2C_CMD_PORT
+031C B807 0003
+               			
                			RETEN
-0340 4600               
+031E 4600               			
+               PRINT_CHAR			
+               			FETCH	R7, ADDRESS_
+031F F007 0003
+               			OUTPUT	R7, I2C_ADDR_PORT
+0321 B807 0001
+               			FETCH	R7, DATA_
+0323 F007 0004
+               			OUTPUT	R7, I2C_DATA_PORT
+0325 B807 0002
+               			FETCH	R7, CMD_
+0327 F007 0005
+               			OUTPUT	R7, I2C_CMD_PORT
+0329 B807 0003
+               LABEL2
+               			FETCH	R4, DATA_
+032B F004 0004
+               			ADD 	R4, 0001
+032D 8204 0001
+               			STORE	R4, DATA_
+032F F404 0004
+               			LOAD	R4, 0000
+0331 AE04 0000
+               			STORE	R4, KK_
+0333 F404 0007
+               LABEL3
+               			FETCH	R2, KK_
+0335 F002 0007
+               			ADD 	R2, 0001
+0337 8202 0001
+               			STORE	R2, KK_
+0339 F402 0007
+               			LOAD	R4, 0000
+033B AE04 0000
+               			STORE	R4, II_
+033D F404 0006
+               			JUMP	LABEL5	;while loop check condition
+033F A400 0347
+               LABEL4
+               			FETCH	R4, II_
+0341 F004 0006
+               			ADD 	R4, 0001
+0343 8204 0001
+               			STORE	R4, II_
+0345 F404 0006
+               LABEL5
+               			FETCH	R4, II_
+0347 F004 0006
+               			COMP 	R4, 01f4
+0349 9804 01F4
+               			JUMPC	LABEL4	;while loop
+034B A600 0341
+               			FETCH	R4, KK_
+034D F004 0007
+               			COMP 	R4, 0064
+034F 9804 0064
+               			JUMPC	LABEL3	;for loop
+0351 A600 0335
+               			FETCH	R4, DATA_
+0353 F004 0004
+               			COMP 	R4, Z_
+0355 9804 007A
+               			JUMPNZ	LABEL6	;if statement
+0357 AC00 035d
+               			LOAD	R4, A_
+0359 AE04 0061
+               			STORE	R4, DATA_
+035B F404 0004
+               LABEL6
+               			RETEN
+035D 4600               
                			ADDRESS	0FFE
                
                			JUMP	ISR
